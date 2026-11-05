@@ -1,0 +1,34 @@
+create database escola_2nb;
+use escola_2nb;
+
+create table aluno(
+matricula int unsigned not null auto_increment,
+nome varchar(255) not null,
+dt_nasc date, 
+cidade varchar(120),
+uf char(2),
+primary key(matricula));
+
+create table nota( 
+id_nota int unsigned not null auto_increment,
+disciplina varchar(60) not null,
+avaliacao char(3) not null,
+valor_nota double(3,1) not null,
+matricula int unsigned not null,
+primary key(id_nota),
+foreign key(matricula) references aluno(matricula));
+
+insert into aluno(matricula, nome, dt_nasc, cidade, uf) values
+(default, "José da Silva", "2000-11-05", "Recife", "PE"), 
+(default, "Maria Antônia", "2001-05-03", "Olinda", "PE");
+
+select * from aluno;
+
+insert into nota(id_nota, disciplina, avaliacao, valor_nota, matricula) values
+(default, "Banco de Dados", "AV1", 7.5 , 1),
+(default, "Banco de Dados", "AV1", 7.5 , 2);
+
+select * from nota;
+
+update aluno set nome = "Maria Antônia da Silva"
+where matricula=2;
